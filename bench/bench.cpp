@@ -14,7 +14,6 @@
  */
 static void BM_Empty(benchmark::State& state)
 {
-    // no initial setup
     for(auto i: state)
     {
         benchmark::DoNotOptimize(state.iterations());
@@ -35,10 +34,8 @@ BENCHMARK(BM_Empty);
 
 static void BM_SumArray(benchmark::State& state)
 {
-    //non timed setup.
     const auto n = static_cast<std::size_t>(state.range(0));
     std::vector<std::uint64_t> v(n,1);
-    //timed 
     for(auto i: state)
     {
         std::uint64_t sum = 0;
@@ -55,13 +52,6 @@ BENCHMARK(BM_SumArray);
 
 
     
-
-
-
-
-
-
-
 
 
 
