@@ -1,4 +1,5 @@
 #include<benchmark/benchmark.h>
+#include<cstddef>
 #include<cstdint>
 #include<vector>
 
@@ -14,7 +15,7 @@
  */
 static void BM_Empty(benchmark::State& state)
 {
-    for(auto i: state)
+    for(auto _: state)
     {
         benchmark::DoNotOptimize(state.iterations());
     }
@@ -36,92 +37,17 @@ static void BM_SumArray(benchmark::State& state)
 {
     const auto n = static_cast<std::size_t>(state.range(0));
     std::vector<std::uint64_t> v(n,1);
-    for(auto i: state)
+    for(auto _: state)
     {
         std::uint64_t sum = 0;
         for(auto j: v)
         {
- 	    sum += j;
+            sum += j;
         }
         benchmark::DoNotOptimize(sum);
     }
+    state.SetBytesProcessed(state.iterations() * state.range(0)
+                            * static_cast<std::int64_t>(sizeof(std::uint64_t)));
 }
 
-BENCHMARK(BM_SumArray);
-
-
-
-    
-
-
-
-
-
-
- 
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+BENCHMARK(BM_SumArray)->RangeMultiplier(4)->Range(1 << 10, 1 << 22);

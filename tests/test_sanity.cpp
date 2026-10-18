@@ -1,5 +1,6 @@
 #include<gtest/gtest.h>
 #include<atomic>
+#include<cstddef>
 
 TEST(Rig, CompilerIsCXX23)
 {
@@ -10,5 +11,3 @@ TEST(Rig, AtomicSizeTIsLockFree)
 {
     EXPECT_TRUE(std::atomic<std::size_t>::is_always_lock_free);
 }
-
-
