@@ -17,7 +17,7 @@ TEST(Pool, FreshPoolisEmpty)
  * test if a deleted slot is
  * reused for a new slot.
 **/
-TEST(poo, DeletedSlotIsReusedFirst)
+TEST(pool, DeletedSlotIsReusedFirst)
 {
     lob::Pool p;
     const auto order_val = 10;
@@ -26,4 +26,18 @@ TEST(poo, DeletedSlotIsReusedFirst)
    
     EXPECT_EQ(p.add_order(order_val),a);
 }
+
+/*
+ * test if double deleting 
+ * a slot returns false.
+**/
+TEST(pool, DoubleDeleteReturnsFalse)
+{
+    lob::Pool p;
+    const auto a = p.add_order(10);
+    const auto deleted = p.delete_order(a);
+    EXPECT_EQ(p.delete_order(a),false);
+}
+
+
 
