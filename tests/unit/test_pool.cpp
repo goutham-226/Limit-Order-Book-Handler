@@ -39,5 +39,28 @@ TEST(pool, DoubleDeleteReturnsFalse)
     EXPECT_EQ(p.delete_order(a),false);
 }
 
+/*
+ * test if a full pool
+ * returns a max_val on
+ * adding a new order.
+**/
+TEST(pool, FullPoolReturnsMaxValasIndex)
+{
+    lob::Pool p;
+    const auto max_val = p.max_val;
+    for(int i = 0; i < 8; i++)
+    {
+         const auto a = p.add_order(10);
+    }
+    EXPECT_EQ(p.add_order(10),max_val);
+}
+
+
+
+
+
+
+
+
 
 
