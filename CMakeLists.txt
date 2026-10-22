@@ -53,3 +53,17 @@ target_link_libraries(bench PRIVATE benchmark::benchmark_main)
 add_executable(test_sanity tests/test_sanity.cpp)
 target_link_libraries(test_sanity PRIVATE GTest::gtest_main)
 gtest_discover_tests(test_sanity)
+
+#---Module 1: Fixed Size Pool Allocator ------------------------------------
+add_library(lob INTERFACE)
+target_include_directories(lob INTERFACE include)
+
+add_executable(test_pool tests/unit/test_pool.cpp)
+target_link_libraries(test_pool PRIVATE lob GTest::gtest_main)
+gtest_discover_tests(test_pool)
+
+
+
+
+
+
