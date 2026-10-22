@@ -1,10 +1,11 @@
+//tests/unit/test_pool.cpp
+
 #include<gtest/gtest.h>
 #include<lob/core/pool.hpp>
 
-TEST(pool, BUILDS)
+TEST(Pool, FreshPoolisEmpty)
 {
-    SUCCEED();
+    lob::Pool p;
+    EXPECT_EQ(p.slots_in_use(),0);
 }
-
-// check if the path builds successfully
 

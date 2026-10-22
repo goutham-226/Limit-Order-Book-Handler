@@ -86,6 +86,12 @@ class Pool
                    std::cout << " Index i = " << i << "is in use: " << is_active[i] << std::endl;
               }
  	 }
+
+         std::uint32_t slots_in_use()
+         {
+             return capacity - stack_size;
+         }
+             
   
          
 };
